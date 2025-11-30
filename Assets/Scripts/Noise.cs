@@ -104,7 +104,7 @@ public static class Noise {
 
     
 
-	public static float[,] GenerateNoiseMap(int mapWidth, int mapHeight, int seed, float scale, int octaves, float persistance, float lacunarity, Vector2 offset) 
+	public static float[,] generateNoiseMap(int mapWidth, int mapHeight, int seed, float scale, int octaves, float persistance, float lacunarity, Vector2 offset) 
     {
         // Debug.Log("hello");
 		float[,] noiseMap = new float[mapWidth,mapHeight];
