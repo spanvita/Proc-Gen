@@ -30,6 +30,7 @@ public class MapGenerator : MonoBehaviour
 
     // Exposed so click handler can read them
     [HideInInspector] public int[,] stateIds;
+    [HideInInspector] public int[] ring;
     [HideInInspector] public Texture2D latestTexture;
     [HideInInspector] public List<Vector2Int> stateCapitals;
 
@@ -54,7 +55,7 @@ public class MapGenerator : MonoBehaviour
         GenerateMap();
     }
 
-    void update()
+    void Update()
     {
         // displayStateIds();
     }
@@ -292,6 +293,29 @@ public class MapGenerator : MonoBehaviour
 
         int[,] provincetype = new int[mapWidth, mapHeight]; //0=normal,1=dessert,2=mountain (safezone)
         createProvinces(allStates);
+
+        //ring based height separation
+        ring = new int[actualStateCount];
+
+        for(int i=0;i<capitals.Length;i++)
+        {
+            if((capitals[i].x-mapWidth/2)*(capitals[i].x-mapWidth/2) +(capitals[i].y-mapHeight/2)*(capitals[i].y-mapHeight/2)< (mapHeight/3f)*(mapHeight/3f))
+            {
+                ring[i]=2; //inner ring
+            }
+            else if((capitals[i].x-mapWidth/2)*(capitals[i].x-mapWidth/2)+(capitals[i].y-mapHeight/2)* (capitals[i].y-mapHeight/2)< (2* (mapHeight/3f))* (2* (mapHeight/3f)))
+            {
+                ring[i]=1; //middle ring
+            }
+            else
+            {
+                ring[i]=0; //outer ring
+            }
+        }
+
+        
+
+        
         
 
         void createProvinces(List<List<Vector2Int>>allStates)

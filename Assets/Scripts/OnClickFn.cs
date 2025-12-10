@@ -22,27 +22,65 @@ public class OnClickFn : MonoBehaviour
     }
 
     void HandleClick()
+{
+
+
+    if (Camera.main == null)
     {
-        if (Camera.main == null) return;
-
-        // NEW INPUT SYSTEM mouse position
-        Vector2 mousePos = Mouse.current.position.ReadValue();
-
-        Ray ray = Camera.main.ScreenPointToRay(mousePos);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit))
-        {
-            Vector2 uv = hit.textureCoord;
-
-            int x = Mathf.FloorToInt(uv.x * mapGen.mapWidth);
-            int y = Mathf.FloorToInt(uv.y * mapGen.mapHeight);
-
-            int id = mapGen.stateIds[x, y];
-
-            ShowPopup("State ID: " + id);
-        }
+        Debug.LogError("Camera.main is NULL");
+        return;
     }
+
+    if (mapGen == null)
+    {
+        Debug.LogError("mapGen is NULL (drag MapGenerator into OnClickFn inspector!)");
+        return;
+    }
+
+    if (mapGen.stateIds == null)
+    {
+        Debug.LogError("mapGen.stateIds is NULL (drawMode != StateMap OR GenerateMap not run)");
+        return;
+    }
+
+    if (mapGen.ring == null)
+    {
+        Debug.LogError("mapGen.ring is NULL (you didn't assign 'ring = ...' in GenerateStateMap)");
+        return;
+    }
+
+    Vector2 mousePos = Mouse.current.position.ReadValue();
+    Ray ray = Camera.main.ScreenPointToRay(mousePos);
+    RaycastHit hit;
+
+    if (!Physics.Raycast(ray, out hit))
+    {
+        Debug.LogError("Raycast did NOT hit the mesh!");
+        return;
+    }
+
+    Vector2 uv = hit.textureCoord;
+
+    int x = Mathf.FloorToInt(uv.x * mapGen.mapWidth);
+    int y = Mathf.FloorToInt(uv.y * mapGen.mapHeight);
+
+    x = Mathf.Clamp(x, 0, mapGen.mapWidth - 1);
+    y = Mathf.Clamp(y, 0, mapGen.mapHeight - 1);
+
+    int id = mapGen.stateIds[x, y];
+
+    if (id < 0 || id >= mapGen.ring.Length)
+    {
+        Debug.LogError($"Invalid ID {id}. ring length = {mapGen.ring.Length}");
+        ShowPopup("Ocean");
+        return;
+    }
+
+    int ringNo = mapGen.ring[id];
+    
+    ShowPopup("State ID: " + id + " ring no. " + ringNo);
+}
+
 
     void ShowPopup(string msg)
     {
