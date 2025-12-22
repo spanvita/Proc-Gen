@@ -12,13 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 19101, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: PanelSettings
   m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.PanelSettings
+<<<<<<< HEAD
   themeUss: {fileID: -4733365628477956816, guid: ebed863242db20348afd84b2f7b8a9a4, type: 3}
+=======
+  themeUss: {fileID: -4733365628477956816, guid: 32880bdeb4a734d52b5de953c9f6bea1, type: 3}
+>>>>>>> 09e7ffa (major improvements)
   m_DisableNoThemeWarning: 0
   m_TargetTexture: {fileID: 0}
   m_RenderMode: 0
   m_ColliderUpdateMode: 0
   m_ColliderIsTrigger: 1
+<<<<<<< HEAD
   m_ScaleMode: 1
+=======
+  m_ScaleMode: 2
+>>>>>>> 09e7ffa (major improvements)
   m_ReferenceSpritePixelsPerUnit: 100
   m_PixelsPerUnit: 100
   m_Scale: 1
@@ -38,7 +46,11 @@ MonoBehaviour:
     m_MinAtlasSize: 64
     m_MaxAtlasSize: 4096
     m_MaxSubTextureSize: 64
+<<<<<<< HEAD
     m_ActiveFilters: 31
+=======
+    m_ActiveFilters: -1
+>>>>>>> 09e7ffa (major improvements)
   m_AtlasBlitShader: {fileID: 9101, guid: 0000000000000000f000000000000000, type: 0}
   m_DefaultShader: {fileID: 9100, guid: 0000000000000000f000000000000000, type: 0}
   m_SDFShader: {fileID: 19011, guid: 0000000000000000f000000000000000, type: 0}

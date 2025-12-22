@@ -33,6 +33,7 @@ public class MapGenerator : MonoBehaviour
     [HideInInspector] public int[] ring;
     [HideInInspector] public Texture2D latestTexture;
     [HideInInspector] public List<Vector2Int> stateCapitals;
+    [HideInInspector] public Vector2Int[] capitals;
 
     [Header("Borders")]
     public float borderDistortion = 24f;   
@@ -53,6 +54,8 @@ public class MapGenerator : MonoBehaviour
     void Start()
     {
         GenerateMap();
+        //Invoke("GenConnections", 2f);
+        Debug.LogError("entered script helloooo");
     }
 
     void Update()
@@ -193,7 +196,8 @@ public class MapGenerator : MonoBehaviour
 
         
 
-
+        //Invoke("GenConnections", 2f);
+        
 
         // Carve “oceans” by turning groups of 2–3 states into water (stateId = -1)
         if (generateOceans && oceanCount > 0)
@@ -202,7 +206,7 @@ public class MapGenerator : MonoBehaviour
         }
 
         // Compute capitals (centroids of remaining land states)
-        Vector2Int[] capitals = new Vector2Int[actualStateCount];
+        capitals = new Vector2Int[actualStateCount];
         bool[] hasAnyTile = new bool[actualStateCount];
 
         float[] sumX = new float[actualStateCount];
@@ -254,6 +258,7 @@ public class MapGenerator : MonoBehaviour
             capitals[s] = best;
             capitalsList.Add(best);
         }
+        
         stateCapitals = capitalsList;
 
         List<List<Vector2Int>> allStates;
@@ -719,6 +724,78 @@ public class MapGenerator : MonoBehaviour
                 }
             }
         }
+    }
+
+    void DrawLine(Vector3 a, Vector3 b)
+    {
+        GameObject lineObj = new GameObject("StateConnection");
+        LineRenderer lr = lineObj.AddComponent<LineRenderer>();
+
+        lr.positionCount = 2;
+        lr.SetPosition(0, a);
+        lr.SetPosition(1, b);
+
+        lr.startWidth = 1.5f;
+        lr.endWidth = 1.5f;
+
+        lr.material = new Material(Shader.Find("Sprites/Default"));
+        lr.startColor = Color.black;
+        lr.endColor = Color.black;
+
+        lr.useWorldSpace = true;
+    }
+
+    void GenConnections()
+    {
+        List<Vector2> neighbors = new List<Vector2>();
+        if ( stateIds == null)
+        {
+            Debug.LogError("stateIds is NULL — map not generated yet");
+            return;
+        }
+
+        for (int y = 0; y <  mapHeight-1; y++)
+        {
+            for (int x = 0; x <  mapWidth-1; x++)
+            {
+                int stateId =  stateIds[x, y];
+                if (stateId < 0)
+                    continue;
+
+                if(stateId!= stateIds[x+1,y])
+                {
+                    if(!neighbors.Contains(new Vector2(stateId,  stateIds[x + 1, y])))
+                        neighbors.Add(new Vector2(stateId,  stateIds[x + 1, y]));
+                    Debug.Log("Connection between " + stateId + " and " +  stateIds[x + 1, y]);
+                }
+                if(stateId!= stateIds[x,y+1])
+                {
+                    if(!neighbors.Contains(new Vector2(stateId,  stateIds[x, y + 1])))
+                        neighbors.Add(new Vector2(stateId,  stateIds[x, y + 1]));
+                    Debug.Log("Connection between " + stateId + " and " +  stateIds[x, y + 1]);   
+                }
+
+            }
+        }
+        
+
+        for (int i = 0; i < neighbors.Count; i++)
+        {
+            int s1 = (int)neighbors[i].x;
+            int s2 = (int)neighbors[i].y;
+
+            Vector2Int c1 =  capitals[s1];
+            Vector2Int c2 =  capitals[s2];
+
+            Vector3 p1 = new Vector3(c1.x, 5f, c1.y);
+            Vector3 p2 = new Vector3(c2.x, 5f, c2.y);
+
+            DrawLine(p1, p2);
+
+            Debug.Log("Neighbor Pair: {s1} <-> {s2}");
+        }
+
+
     }
     
 
