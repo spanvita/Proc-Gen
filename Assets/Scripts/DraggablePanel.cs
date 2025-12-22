@@ -1,16 +1,26 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class DraggablePanel : MonoBehaviour
+public class DraggablePanel : MonoBehaviour,
+    IBeginDragHandler, IDragHandler
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private RectTransform rectTransform;
+    private Canvas canvas;
+
+    void Awake()
     {
-        
+        rectTransform = GetComponent<RectTransform>();
+        canvas = GetComponentInParent<Canvas>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnBeginDrag(PointerEventData eventData)
     {
-        
+        // nothing needed here
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        rectTransform.anchoredPosition +=
+            eventData.delta / canvas.scaleFactor;
     }
 }
