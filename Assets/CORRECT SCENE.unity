@@ -617,6 +617,7 @@ GameObject:
   m_Component:
   - component: {fileID: 904591280}
   - component: {fileID: 904591279}
+  - component: {fileID: 904591281}
   m_Layer: 5
   m_Name: UIDocument
   m_TagString: Untagged
@@ -662,6 +663,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &904591281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904591278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83373a4983d9642daa699afda692b28d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIController
+  uiDocument: {fileID: 904591279}
+  initialPlayerData: {fileID: 11400000, guid: a99566967afb340c0a5821d4f82f82a0, type: 2}
 --- !u!1 &966693890
 GameObject:
   m_ObjectHideFlags: 0
