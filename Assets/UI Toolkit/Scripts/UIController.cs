@@ -19,6 +19,7 @@ public class UIController : MonoBehaviour
     VisualElement r3;
     Label label_left;
     Label label_right;
+    Toggle viewFight;
 
     bool layoutReady = false;
     bool moving1 = true;
@@ -46,6 +47,9 @@ public class UIController : MonoBehaviour
     void CacheUI()
     {
         root = uiDocument.rootVisualElement;
+
+        viewFight = root.Q<Toggle>("viewFight");
+        if (viewFight == null) { Debug.LogError("viewFight missing"); };
 
         fight = root.Q<VisualElement>("fight");
         if (fight == null) { Debug.LogError("fight missing"); return; }
@@ -143,10 +147,18 @@ public class UIController : MonoBehaviour
         }
     }
 
-    //-------------------------------------------------
 
    void Update()
     {
+        
+        viewFight.RegisterValueChangedCallback(evt =>
+        {
+            fight.style.display = evt.newValue
+                ? DisplayStyle.Flex
+                : DisplayStyle.None;
+        });
+  
+
         if (!layoutReady) return;
 
         if (moving1)
