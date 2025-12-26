@@ -2,6 +2,21 @@ using UnityEngine;
 using UnityEngine.InputSystem;   // NEW INPUT SYSTEM
 using TMPro;
 using UnityEngine.UIElements;
+using UnityEngine.Networking;
+using System.Collections;
+
+// left click values to be sent to backend
+//left click are found and sent in world coordinates
+//only update and handleclick functions are used
+
+[System.Serializable]
+public class clickVal
+{
+    public int stateId;
+    public float globalX;
+    public float globalZ;
+    public int globalY;
+}
 
 
 public class OnClickFn : MonoBehaviour
@@ -18,6 +33,31 @@ public class OnClickFn : MonoBehaviour
     public float popupDuration = 5f;
 
     private float hideTime = 0f;
+
+    IEnumerator SendClickToBackend(clickVal payload)
+    {
+        string url = "http://localhost:3000/click"; 
+
+        string json = JsonUtility.ToJson(payload);
+        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
+
+        UnityWebRequest request = new UnityWebRequest(url, "POST");
+        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+
+        yield return request.SendWebRequest();
+
+        if (request.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError("POST failed: " + request.error);
+        }
+        else
+        {
+            Debug.Log("POST success: " + request.downloadHandler.text);
+        }
+    }
+
 
     void Start()
 {
@@ -129,6 +169,19 @@ public class OnClickFn : MonoBehaviour
     
     ShowPopup("State ID: " + id + " ring no. " + ringNo);
     Debug.LogError("x,z in world coords: " + hit.point);
+
+    clickVal payload = new clickVal 
+    {
+        stateId = id,
+        globalX = hit.point.x,
+        globalY=0,
+        globalZ = hit.point.z
+    };
+
+    StartCoroutine(SendClickToBackend(payload));
+
+
+
 }
 
 
