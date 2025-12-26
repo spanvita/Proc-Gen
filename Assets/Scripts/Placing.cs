@@ -9,7 +9,7 @@ public class Placing : MonoBehaviour
 
     void Start()
 {
-    Debug.LogError("START ENTERED"); // ERROR, not Log
+    //Debug.LogError("START ENTERED"); // ERROR, not Log
 
     GameObject treeInstance = Instantiate(
         tree,
@@ -17,11 +17,11 @@ public class Placing : MonoBehaviour
         Quaternion.identity
     );
 
-    Debug.LogError("AFTER INSTANTIATE");
+    //Debug.LogError("AFTER INSTANTIATE");
 
     treeInstance.transform.localScale = Vector3.one * 100;
 
-    Debug.LogError("AFTER SCALE");
+    // Debug.LogError("AFTER SCALE");
 }
 
 }

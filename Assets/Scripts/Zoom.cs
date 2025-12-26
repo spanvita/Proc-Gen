@@ -13,17 +13,17 @@ public class PerspectiveZoom : MonoBehaviour
     void Awake()
     {
         cam = GetComponent<Camera>();
-        cam.orthographic = false;
+        cam.orthographic = false;  //coz I am using perspective camera
     }
 
     void Update()
     {
-        Debug.LogError("UPDATE ENTERED");
+        // Debug.LogError("UPDATE ENTERED");
 
         if (Mouse.current == null) return;
 
         float scroll = Mouse.current.scroll.ReadValue().y;
-        Debug.LogError(Mouse.current.scroll.ReadValue().y);
+        // Debug.LogError(Mouse.current.scroll.ReadValue().y);
 
         if (scroll == 0) return;
 

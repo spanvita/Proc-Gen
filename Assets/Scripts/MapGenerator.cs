@@ -55,7 +55,7 @@ public class MapGenerator : MonoBehaviour
     {
         GenerateMap();
         //Invoke("GenConnections", 2f);
-        Debug.LogError("entered script helloooo");
+        // Debug.LogError("entered script helloooo");
     }
 
     void Update()
@@ -750,7 +750,7 @@ public class MapGenerator : MonoBehaviour
         List<Vector2> neighbors = new List<Vector2>();
         if ( stateIds == null)
         {
-            Debug.LogError("stateIds is NULL — map not generated yet");
+            // Debug.LogError("stateIds is NULL — map not generated yet");
             return;
         }
 

@@ -49,16 +49,16 @@ public class UIController : MonoBehaviour
         root = uiDocument.rootVisualElement;
 
         viewFight = root.Q<Toggle>("viewFight");
-        if (viewFight == null) { Debug.LogError("viewFight missing"); };
+        // if (viewFight == null) { Debug.LogError("viewFight missing"); };
 
         fight = root.Q<VisualElement>("fight");
-        if (fight == null) { Debug.LogError("fight missing"); return; }
+        // if (fight == null) { Debug.LogError("fight missing"); return; }
 
         label_left = fight.Q<Label>("label_left");
         label_right = fight.Q<Label>("label_right");
 
         left = fight.Q<VisualElement>("left");
-        if (left == null) { Debug.LogError("left missing"); return; }
+        // if (left == null) { Debug.LogError("left missing"); return; }
 
         l1 = left.Q<VisualElement>("l1");
         l2 = left.Q<VisualElement>("l2");
@@ -67,12 +67,12 @@ public class UIController : MonoBehaviour
         r2 = left.Q<VisualElement>("r2");
         r3 = left.Q<VisualElement>("r3");
 
-        if (l1 == null) Debug.LogError("l1 missing");
-        if (l2 == null) Debug.LogError("l2 missing");
-        if (l3 == null) Debug.LogError("l3 missing");
-        if (r1 == null) Debug.LogError("r1 missing");
-        if (r2 == null) Debug.LogError("r2 missing");
-        if (r3 == null) Debug.LogError("r3 missing");
+        // if (l1 == null) Debug.LogError("l1 missing");
+        // if (l2 == null) Debug.LogError("l2 missing");
+        // if (l3 == null) Debug.LogError("l3 missing");
+        // if (r1 == null) Debug.LogError("r1 missing");
+        // if (r2 == null) Debug.LogError("r2 missing");
+        // if (r3 == null) Debug.LogError("r3 missing");
     }
 
     void BindData()
@@ -141,23 +141,21 @@ public class UIController : MonoBehaviour
             initialPlayerData.player = Resources.Load<Sprite>("striker");
 
             if (initialPlayerData.player == null)
-                Debug.LogError("Sprite NOT loaded (check Resources/striker.png)");
+                 Debug.Log("Sprite NOT loaded (check Resources/striker.png)");
             else
                 Debug.Log("Sprite loaded successfully");
         }
     }
 
+    //-------------------------------------------------
 
    void Update()
     {
         
-        viewFight.RegisterValueChangedCallback(evt =>
-        {
-            fight.style.display = evt.newValue
-                ? DisplayStyle.Flex
-                : DisplayStyle.None;
-        });
-  
+        if (viewFight != null)
+    {
+        fight.visible = viewFight.value; //true or false
+    }   
 
         if (!layoutReady) return;
 

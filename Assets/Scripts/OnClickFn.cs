@@ -23,14 +23,14 @@ public class OnClickFn : MonoBehaviour
 {
     if (uiDoc == null)
     {
-        Debug.LogError("OnClickFn: uiDoc is null — assign the UIDocument GameObject in the Inspector.");
+        // Debug.LogError("OnClickFn: uiDoc is null — assign the UIDocument GameObject in the Inspector.");
         return;
     }
 
     root = uiDoc.rootVisualElement;
     if (root == null)
     {
-        Debug.LogError("OnClickFn: uiDoc.rootVisualElement is null. Make sure the UIDocument has a Source Asset (UXML) assigned.");
+        // Debug.LogError("OnClickFn: uiDoc.rootVisualElement is null. Make sure the UIDocument has a Source Asset (UXML) assigned.");
         return;
     }
 
@@ -40,8 +40,8 @@ public class OnClickFn : MonoBehaviour
 
     if (popup == null)
     {
-        Debug.LogError("OnClickFn: couldn't find VisualElement named 'popup'.\n" +
-                       "Open UI Builder and check the NAME of the root VisualElement (wrench/3-dots menu).");
+        // Debug.LogError("OnClickFn: couldn't find VisualElement named 'popup'.\n" +
+                    //    "Open UI Builder and check the NAME of the root VisualElement (wrench/3-dots menu).");
         // Optional: list all children so you can see what's available:
         foreach (var child in root.Children())
             Debug.Log("root child: " + child.name);
@@ -76,25 +76,25 @@ public class OnClickFn : MonoBehaviour
 
     if (Camera.main == null)
     {
-        Debug.LogError("Camera.main is NULL");
+        // Debug.LogError("Camera.main is NULL");
         return;
     }
 
     if (mapGen == null)
     {
-        Debug.LogError("mapGen is NULL (drag MapGenerator into OnClickFn inspector!)");
+        // Debug.LogError("mapGen is NULL (drag MapGenerator into OnClickFn inspector!)");
         return;
     }
 
     if (mapGen.stateIds == null)
     {
-        Debug.LogError("mapGen.stateIds is NULL (drawMode != StateMap OR GenerateMap not run)");
+        // Debug.LogError("mapGen.stateIds is NULL (drawMode != StateMap OR GenerateMap not run)");
         return;
     }
 
     if (mapGen.ring == null)
     {
-        Debug.LogError("mapGen.ring is NULL (you didn't assign 'ring = ...' in GenerateStateMap)");
+        // Debug.LogError("mapGen.ring is NULL (you didn't assign 'ring = ...' in GenerateStateMap)");
         return;
     }
 
@@ -104,7 +104,7 @@ public class OnClickFn : MonoBehaviour
 
     if (!Physics.Raycast(ray, out hit))
     {
-        Debug.LogError("Raycast did NOT hit the mesh!");
+        // Debug.LogError("Raycast did NOT hit the mesh!");
         return;
     }
 
@@ -120,7 +120,7 @@ public class OnClickFn : MonoBehaviour
 
     if (id < 0 || id >= mapGen.ring.Length)
     {
-        Debug.LogError($"Invalid ID {id}. ring length = {mapGen.ring.Length}");
+        // Debug.LogError($"Invalid ID {id}. ring length = {mapGen.ring.Length}");
         ShowPopup("Ocean");
         return;
     }
@@ -128,6 +128,7 @@ public class OnClickFn : MonoBehaviour
     int ringNo = mapGen.ring[id];
     
     ShowPopup("State ID: " + id + " ring no. " + ringNo);
+    Debug.LogError("x,z in world coords: " + hit.point);
 }
 
 
