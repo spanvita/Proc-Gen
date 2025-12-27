@@ -249,9 +249,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 58666c2e1e4614e05b687bfbe168366f, type: 3}
-        m_TargetAssemblyTypeName: UnityEditor.MonoScript, UnityEditor.CoreModule
-        m_MethodName: set_name
+      - m_Target: {fileID: 880237711}
+        m_TargetAssemblyTypeName: Backend_sender, Assembly-CSharp
+        m_MethodName: OnGetData
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1361,13 +1361,13 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 852724841}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 58666c2e1e4614e05b687bfbe168366f, type: 3}
-        m_TargetAssemblyTypeName: UnityEditor.MonoScript, UnityEditor.CoreModule
-        m_MethodName: set_name
+      - m_Target: {fileID: 880237711}
+        m_TargetAssemblyTypeName: Backend_sender, Assembly-CSharp
+        m_MethodName: OnGetData
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1784,6 +1784,7 @@ GameObject:
   - component: {fileID: 966693896}
   - component: {fileID: 966693897}
   - component: {fileID: 966693898}
+  - component: {fileID: 966693899}
   m_Layer: 0
   m_Name: MapGen
   m_TagString: MainCamera
@@ -1962,6 +1963,19 @@ MonoBehaviour:
   mapGen: {fileID: 966693893}
   popupDuration: 5
   hideTime: 0
+--- !u!114 &966693899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966693890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 933539f949bcd4cd9b5b7cce5d368e2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MapDataSender
+  mapGen: {fileID: 966693893}
 --- !u!1001 &1031490192
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2108,9 +2122,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 58666c2e1e4614e05b687bfbe168366f, type: 3}
-        m_TargetAssemblyTypeName: UnityEditor.MonoScript, UnityEditor.CoreModule
-        m_MethodName: set_name
+      - m_Target: {fileID: 880237711}
+        m_TargetAssemblyTypeName: Backend_sender, Assembly-CSharp
+        m_MethodName: OnGetData
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

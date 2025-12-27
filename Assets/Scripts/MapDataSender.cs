@@ -1,5 +1,3 @@
-
-
 using UnityEngine;
 using UnityEngine.InputSystem;   // NEW INPUT SYSTEM
 using TMPro;
@@ -7,21 +5,21 @@ using UnityEngine.UIElements;
 using UnityEngine.Networking;
 using System.Collections;
 
-
 [System.Serializable]
-public class clickValue
+public class value_to_be_sent
 {
-    public string asset_name;
+    public int[,] stateIds;          // grid → stateId
+    public Vector2Int[] capitals;    // index = stateId, value = (x,y)
+
 }
 
 
-public class Backend_sender : MonoBehaviour
+public class MapDataSender : MonoBehaviour
 {
-
-    
-    IEnumerator SendClickToBackend(clickValue payload)
+    public MapGenerator mapGen;
+    IEnumerator SendClickToBackend(value_to_be_sent payload)
     {
-        string url = "http://localhost:3000/assetvalues"; 
+        string url = "http://localhost:3000/mapData"; 
 
         string json = JsonUtility.ToJson(payload);
         byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
@@ -43,12 +41,13 @@ public class Backend_sender : MonoBehaviour
         }
     }
 
-    public void OnGetData(string asset_name)
+    void Awake()
     {
-        Debug.LogError("Sending to backend: " + asset_name);
-        clickValue payload = new clickValue 
+        
+        value_to_be_sent payload = new value_to_be_sent 
         {
-            asset_name = asset_name
+            stateIds=mapGen.stateIds,
+            capitals=mapGen.capitals
         };
 
         StartCoroutine(SendClickToBackend(payload));

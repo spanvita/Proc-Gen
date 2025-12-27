@@ -15,6 +15,16 @@ app.post("/click", (req, res) => {
   res.json({ status: "ok" });
 });
 
+app.post("/assetvalues", (req, res) => {
+  console.log("Received asset values:", req.body);
+  res.json({ status: "ok" });
+});
+
+app.post("/mapData", (req, res) => {
+  console.log("Received map data:", req.body);
+  res.json({ status: "ok" });
+});
+
 app.listen(3000, () => {
   console.log("Server running on port 3000");
 });
