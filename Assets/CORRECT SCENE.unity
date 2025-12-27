@@ -178,11 +178,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
+  near clip plane: 0.01
+  far clip plane: 5000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 1912.6587
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -206,13 +206,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.061608434, y: -0.6398283, z: 0.07342208, w: 0.7625178}
-  m_LocalPosition: {x: 732, y: 66, z: -638}
+  m_LocalRotation: {x: 0.23911765, y: 0.36964378, z: -0.09904577, w: 0.8923991}
+  m_LocalPosition: {x: -1734, y: 1800, z: -1674}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -80, z: 11}
+  m_LocalEulerAnglesHint: {x: 30, y: 45, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -962,7 +962,7 @@ MonoBehaviour:
   seaLevel: 0
   waterColor: {r: 0.050980397, g: 0.18190797, b: 0.29803923, a: 1}
   ring: 0000000001000000000000000100000001000000010000000100000000000000000000000000000000000000010000000200000001000000010000000100000002000000010000000000000002000000
-  latestTexture: {fileID: 1537793930}
+  latestTexture: {fileID: 1874596264}
   stateCapitals:
   - {x: 39, y: 40}
   - {x: 397, y: 133}
@@ -1276,7 +1276,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1368389002}
   m_CullTransparentMesh: 1
---- !u!28 &1537793930
+--- !u!28 &1874596264
 Texture2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
